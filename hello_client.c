@@ -1,11 +1,10 @@
  #include <stdio.h>
-  2 #include <stdlib.h>
-  3 #include <string.h>
-  4 #include <unistd.h>
-  5 #include <arpa/inet.h>
-  6 #include <sys/soket.h>
-  7
-  8 void error_handling(char *message);
+ #include <stdlib.h>
+ #include <string.h>
+ #include <unistd.h>
+ #include <arpa/inet.h>
+ #include <sys/socket.h>
+void error_handling(char *message);
 
 int main(int argc, char *argv[])
 {
@@ -24,8 +23,7 @@ int main(int argc, char *argv[])
 	sock = socket(PF_INET, SOCK_STREAM, 0);
 	if(sock == -1)
 		error_handling("socket() error");
-	memset(&serv_addr, 0, sizeof(serv
--addr));
+	memset(&serv_addr, 0, sizeof(serv_addr));
 	serv_addr.sin_family=AF_INET;
 	serv_addr.sin_addr.s_addr=inet_addr(argv[1]);
 	serv_addr.sin_port = htons(atoi(argv[2]));
@@ -36,14 +34,14 @@ int main(int argc, char *argv[])
 	if(str_len == -1)
 		error_handling("read() error!");
 	printf("Message from server : %s \n", message);
-	clode(sock);
+	close(sock);
 	return 0 ;
 		
 }
 
-void error_handling(char *mssage)
+void error_handling(char *message)
 {
 	fputs(message, stderr);
-	fputs('\n', stderr);
+	fputc('\n', stderr);
 	exit(1);
 }
