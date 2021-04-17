@@ -1,5 +1,3 @@
-
-#include<stdio.h>
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -70,10 +68,10 @@ int calculate(int opnum, int opnds[], char op)
 		for(i=1; i<opnum; i++) result+=opnds[i];
 		break;
 	case '-':
-		for(i=1; i<opnum; i++) result+=opnds[i];
+		for(i=1; i<opnum; i++) result-=opnds[i];
 		break;
 	case '*':
-		for(i=1; i<opnum; i++) result+=opnds[i];	
+		for(i=1; i<opnum; i++) result*=opnds[i];	
 		break;
 	}
 	return result;
